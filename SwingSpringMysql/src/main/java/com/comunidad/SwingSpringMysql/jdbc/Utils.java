@@ -39,60 +39,7 @@ public class Utils {
 	
 	public static String convertJsonToString(String valor) {
 		String date = "";
-		String payload = "{\r\n" + 
-				"   \"TCRMService\":{\r\n" + 
-				"      \"@schemaLocation\":\"http:\\/\\/www.ibm.com\\/mdm\\/schema MDMCommon.xsd\",\r\n" + 
-				"      \"RequestControl\":{\r\n" + 
-				"         \"requestID\":604157,\r\n" + 
-				"         \"DWLControl\":{\r\n" + 
-				"            \"requesterName\":\"rdmadmin\",\r\n" + 
-				"            \"requesterLocale\":\"es\"\r\n" + 
-				"         }\r\n" + 
-				"      },\r\n" + 
-				"      \"TCRMInquiry\":{\r\n" + 
-				"         \"InquiryType\":\"getRDValueSetByName\",\r\n" + 
-				"         \"InquiryParam\":{\r\n" + 
-				"            \"tcrmParam\":[\r\n" + 
-				"               {\r\n" + 
-				"                  \"@name\":\"rdValueSetName\",\r\n" + 
-				"                  \"$\":\""+valor+"\"\r\n" + 
-				"               },\r\n" + 
-				"               {\r\n" + 
-				"                  \"@name\":\"inquiryLevel\",\r\n" + 
-				"                  \"$\":\"1\"\r\n" + 
-				"               },\r\n" + 
-				"               {\r\n" + 
-				"                  \"@name\":\"filter\",\r\n" + 
-				"                  \"$\":\"ACTIVE\"\r\n" + 
-				"               }\r\n" + 
-				"            ]\r\n" + 
-				"         }\r\n" + 
-				"      }\r\n" + 
-				"   }\r\n" + 
-				"}";
 		
-		try {
-			String url = "http://10.13.0.40:9080/com.ibm.mdm.server.ws.restful/resources/MDMWSRESTful";
-			
-	        String plainCredentials="rdmadmin:passw0rd";
-	        String base64Credentials = Base64.getEncoder().encodeToString(plainCredentials.getBytes());
-	        
-		    RestTemplate rest = new RestTemplate();
-
-		    HttpHeaders headers = new HttpHeaders();
-		    headers.add("Accept", "application/json");
-		    headers.add("Content-Type", "application/json");
-		    headers.add("Accept", "*/*");
-		    headers.add("Connection", "keep-alive");
-		    headers.add("Authorization", "Basic " + base64Credentials);
-		    HttpEntity<String> requestEntity = new HttpEntity<String>(payload, headers);
-		    ResponseEntity<String> responseEntity = rest.exchange(url, HttpMethod.PUT, requestEntity, String.class);
-
-		    date = responseEntity.getBody().toString();
-		     
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return date;
 	}
 }
